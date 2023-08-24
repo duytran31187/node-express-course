@@ -4,6 +4,7 @@ const express = require('express');
 const app = express();
 const taskRoutes = require('./routes/tasks');
 const notFound = require('./middlewares/not-found');
+const errorHandler = require('./middlewares/error-handler');
 
 app.use(express.json()); // without this, we will not have data in req.body
 
@@ -16,6 +17,7 @@ app.use([logger]);
 // routes
 app.use('/api/v1/tasks', taskRoutes);
 app.use(notFound);
+app.use(errorHandler);
 
 // connect db
 const PORT = 5000;

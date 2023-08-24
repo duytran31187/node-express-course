@@ -1,4 +1,5 @@
 
+const { createCustomError } = require('../errors/custom-error');
 const TaskModel = require('../models/Task');
 
 const getAllTasks = async (req, res) => {
@@ -23,19 +24,17 @@ const createTask = async (req, res) => {
     
 }
 
-const getTask = async (req, res) => {
-    console.log(`params ${req.params}`);
+const getTask = async (req, res, next) => {
     try {
         const {id: taskID} = req.params;
         const task = await TaskModel.findOne({_id: taskID});
         if (!task) {
-            res.status(404).json({msg: `no task found with provided ID  ${taskID}`});
+            next(createCustomError(404,  `no task found with provided ID  ${taskID}`));
         } else {
-            
             res.status(200).json({task});
         }
     } catch (error) {
-        res.status(404).json({msg: 'no task found'});
+        res.status(404).json(error);
     }
 }
 
