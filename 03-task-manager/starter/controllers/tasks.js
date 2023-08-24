@@ -7,7 +7,7 @@ const getAllTasks = async (req, res) => {
         const tasks = await TaskModel.find({});
         res.status(200).json({tasks});
     } catch (error) {
-        res.status(500).json({msg: 'no task found'});
+        res.status(500).json({msg: `no task found`});
     }
 };
 
@@ -29,7 +29,7 @@ const getTask = async (req, res) => {
         const {id: taskID} = req.params;
         const task = await TaskModel.findOne({_id: taskID});
         if (!task) {
-            res.status(404).json({msg: 'no task found with provided ID'});
+            res.status(404).json({msg: `no task found with provided ID  ${taskID}`});
         } else {
             
             res.status(200).json({task});
