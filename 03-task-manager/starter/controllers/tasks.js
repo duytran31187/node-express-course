@@ -16,14 +16,20 @@ const createTask = asyncWrapper(async (req, res) => {
 
 });
 
-const getTask = asyncWrapper(async (req, res, next) => {
-    const { id: taskID } = req.params;
-    const task = await TaskModel.findOne({ _id: taskID });
-    if (!task) {
-        return next(createCustomError(404, `no task found with provided ID  ${taskID}`));
+const getTask = async (req, res, next) => {
+    // https://expressjs.com/en/guide/error-handling.html
+    try {
+        const {id: taskID} = req.params;
+        const task = await TaskModel.findOne({_id: taskID});
+        if (!task) {
+            next(createCustomError(404,  `no task found with provided ID  ${taskID}`));
+        } else {
+            res.status(200).json({task});
+        }
+    } catch (error) {
+        next({error});  // Pass errors to Express.
     }
-    res.status(200).json({ task });
-});
+}
 
 const deleteTask = asyncWrapper(async (req, res, next) => {
     const { id: taskID } = req.params
