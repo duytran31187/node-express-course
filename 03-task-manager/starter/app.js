@@ -7,6 +7,7 @@ const notFound = require('./middlewares/not-found');
 const errorHandler = require('./middlewares/error-handler');
 
 app.use(express.json()); // without this, we will not have data in req.body
+app.use(express.static('./public'));
 
 const logger = (req, res, next) => {
     console.log(`hit server ${req.url}`);
