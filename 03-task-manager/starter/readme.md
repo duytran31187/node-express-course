@@ -34,3 +34,6 @@ Explain:
     - Make changes to the request and the response objects.
     - End the request-response cycle.
     - Call the next middleware function in the stack: next() 
+
+# in .env file, add 
+    MONGO_URI=mongodb+srv://admin:TS2qXq40BCcH9IQx@cluster-node-express.2uca2hg.mongodb.net/task-manager?retryWrites=true&w=majority    

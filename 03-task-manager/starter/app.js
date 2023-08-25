@@ -22,10 +22,10 @@ app.use(notFound); // note: to understand, 404 is as default route. if the path 
 app.use(errorHandler);
 
 // connect db
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 const start = async () => {
     try {
-        await connectDb(process.env.MONGO_URL);
+        await connectDb(process.env.MONGO_URI);
         app.listen(PORT, console.log(`listening on port ${PORT}`));
     } catch (error) {
         console.log(`[db] err ${error}`);
