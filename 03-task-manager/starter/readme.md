@@ -26,3 +26,11 @@ Explain:
     ```shell
     process.env.MONGO_URL
     ```
+
+# notFound middleware:
+ - it likes a default route handler
+# middlewares: (https://expressjs.com/en/guide/using-middleware.html)
+    - Execute any code.
+    - Make changes to the request and the response objects.
+    - End the request-response cycle.
+    - Call the next middleware function in the stack: next() 
