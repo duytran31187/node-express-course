@@ -16,7 +16,8 @@ app.use([logger]);
 
 // routes
 app.use('/api/v1/tasks', taskRoutes);
-app.use(notFound);
+app.use(notFound); // note: to understand, 404 is as default route. if the path is not handled then just go to default.
+// note: if we move this line before route handles. all routes will be 404
 app.use(errorHandler);
 
 // connect db
