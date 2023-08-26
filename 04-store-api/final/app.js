@@ -9,6 +9,7 @@ const productsRouter = require('./routes/products');
 
 const notFoundMiddleware = require('./middleware/not-found');
 const errorMiddleware = require('./middleware/error-handler');
+const product = require('./models/product');
 
 // middleware
 app.use(express.json());
@@ -21,6 +22,10 @@ app.get('/', (req, res) => {
 
 app.use('/api/v1/products', productsRouter);
 
+// test static method
+app.get('/api/v1/company', (req, res) => {
+  res.status(200).json(product.getValidCompanyNames())
+});
 // products route
 
 app.use(notFoundMiddleware);

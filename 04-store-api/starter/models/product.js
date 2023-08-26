@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-
+// https://mongoosejs.com/docs/guide.html
 const productSchema = new mongoose.Schema({
   name: {
     type: String,
